@@ -22,9 +22,10 @@ export const MagnetForm = () => {
     setSubmitting(true)
 
     try {
-      const resp = await fetch("http://localhost:8080/get-video", {
+      const resp = await fetch("http://localhost:8080/video/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ magnet_link: magnet }),
       })
 

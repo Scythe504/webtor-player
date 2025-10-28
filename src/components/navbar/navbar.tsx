@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme/theme-toggle"
 import { AuthModal } from "@/components/auth/auth"
 
@@ -11,10 +10,7 @@ export function Navbar() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -34,12 +30,9 @@ export function Navbar() {
               </span>
             </Link>
 
-            {/* Right side - Theme toggle and Auth */}
+            {/* Right side */}
             <div className="flex items-center gap-3">
               <ThemeToggle />
-              <Button onClick={() => setAuthModalOpen(true)}>
-                Login
-              </Button>
             </div>
           </div>
         </div>
