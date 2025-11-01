@@ -3,8 +3,13 @@
 import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "../ui/card"
 
-export const MagnetForm = () => {
+interface MagnetFormProps {
+  onSubmitSuccess?: (videoId: string) => void
+}
+
+export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
   const [magnet, setMagnet] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
@@ -13,7 +18,6 @@ export const MagnetForm = () => {
     e.preventDefault()
     setError(null)
 
-    // Basic validation for magnet links
     if (!magnet || !magnet.toLowerCase().startsWith("magnet:")) {
       setError("Please enter a valid magnet link starting with magnet:.")
       return
@@ -22,26 +26,26 @@ export const MagnetForm = () => {
     setSubmitting(true)
 
     try {
-      const resp = await fetch("http://localhost:8080/video/start", {
+      const resp = await fetch("http://localhost:8080/videos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ magnet_link: magnet }),
       })
 
       if (!resp.ok) {
-        const text = await resp.text().catch(() => "")
         throw new Error("Request failed. Please try again.")
       }
 
       const data = (await resp.json()) as { video_id?: string }
       const videoId = data?.video_id
-      if (!videoId) {
-        throw new Error("No video_id returned from server.")
-      }
+      if (!videoId) throw new Error("No video_id returned from server.")
 
-      // Redirect to the video page
-      window.location.href = `http://localhost:3000/video/${encodeURIComponent(videoId)}`
+      // Trigger callback if provided, otherwise redirect
+      if (onSubmitSuccess) {
+        onSubmitSuccess(videoId)
+      } else {
+        window.location.href = `http://localhost:3000/video/${encodeURIComponent(videoId)}`
+      }
     } catch (err: any) {
       setError(err?.message || "Something went wrong. Please try again.")
       setSubmitting(false)

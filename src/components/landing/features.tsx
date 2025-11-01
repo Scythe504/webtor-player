@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const features = [
   {
@@ -85,32 +84,32 @@ export function FeaturesCarousel() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-full sm:w-80 md:w-96 group/card"
+                className="shrink-0 w-full sm:w-80 md:w-96 group/card"
                 onMouseEnter={() => setFocusedIndex(index)}
                 onMouseLeave={() => setFocusedIndex(null)}
               >
-                <div className="relative h-full bg-gradient-to-br from-blue-900/30 via-blue-950/40 to-slate-950/50 backdrop-blur-xl rounded-2xl border border-blue-500/20 p-8 overflow-visible transition-all duration-300 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 group-hover/card:scale-105">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-blue-500/0 to-blue-400/0 group-hover/card:from-blue-600/5 group-hover/card:via-blue-500/5 group-hover/card:to-blue-400/5 transition-all duration-300 pointer-events-none rounded-2xl"></div>
+                <div className="relative h-full bg-linear-to-br from-blue-900/30 via-blue-950/40 to-slate-950/50 backdrop-blur-xl rounded-2xl border border-blue-500/20 p-8 overflow-visible transition-all duration-300 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 group-hover/card:scale-105">
+                  <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 via-blue-500/0 to-blue-400/0 group-hover/card:from-blue-600/5 group-hover/card:via-blue-500/5 group-hover/card:to-blue-400/5 transition-all duration-300 pointer-events-none rounded-2xl"></div>
 
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-500/10 to-transparent rounded-bl-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-blue-500/10 to-transparent rounded-bl-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"></div>
 
                   {/* Content */}
                   <div className="relative z-10 flex flex-col h-full">
-                    <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30">
+                    <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-linear-to-br from-blue-500 to-blue-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30">
                       {feature.icon}
                     </div>
 
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3 text-balance leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-sm md:text-base text-blue-100/70 leading-relaxed flex-grow text-balance">
+                    <p className="text-sm md:text-base text-blue-100/70 leading-relaxed grow text-balance">
                       {feature.desc}
                     </p>
 
                     <div className="mt-6 pt-6 border-t border-blue-500/10">
                       {/* <div className="h-1 w-16 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div> */}
                       <div
-                        className="left-0 h-1.5 bg-gradient-to-r from-blue-400 via-blue-500 to-transparent rounded-2xl transition-all duration-500 ease-out"
+                        className="left-0 h-1.5 bg-linear-to-r from-blue-400 via-blue-500 to-transparent rounded-2xl transition-all duration-500 ease-out"
                         style={{
                           width: focusedIndex === index ? "100%" : "20%",
                           borderTopRightRadius: focusedIndex === index ? "0.5rem" : "0.5rem",
@@ -124,11 +123,11 @@ export function FeaturesCarousel() {
           </div>
 
           {showLeftFade && (
-            <div className="absolute left-0 top-2 bottom-8 w-24 sm:w-32 bg-gradient-to-r from-slate-950/60 to-transparent pointer-events-none z-20 rounded-2xl"></div>
+            <div className="absolute left-0 top-2 bottom-8 w-24 sm:w-32 bg-linear-to-r from-slate-950/60 to-transparent pointer-events-none z-20 rounded-2xl"></div>
           )}
 
           {showRightFade && (
-            <div className="absolute right-0 top-2 bottom-8 w-24 sm:w-32 bg-gradient-to-l from-slate-950/60 to-transparent pointer-events-none z-20 rounded-2xl"></div>
+            <div className="absolute right-0 top-2 bottom-8 w-24 sm:w-32 bg-linear-to-l from-slate-950/60 to-transparent pointer-events-none z-20 rounded-2xl"></div>
           )}
         </div>
 
