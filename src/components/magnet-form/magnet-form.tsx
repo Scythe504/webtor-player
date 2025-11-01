@@ -1,17 +1,15 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-interface MagnetFormProps {
-  onSubmitSuccess?: (videoId: string) => void
-}
-
-export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
+export const MagnetForm = () => {
   const [magnet, setMagnet] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
+  const router = useRouter()
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -35,20 +33,20 @@ export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
         throw new Error("Request failed. Please try again.")
       }
 
-      const data = (await resp.json()) as { video_id?: string }
+      const data = await resp.json()
       const videoId = data?.video_id
       if (!videoId) throw new Error("No video_id returned from server.")
 
-      // Trigger callback if provided, otherwise redirect
-      if (onSubmitSuccess) {
-        onSubmitSuccess(videoId)
-      } else {
-        window.location.href = `http://localhost:3000/video/${encodeURIComponent(videoId)}`
-      }
+      // reset state before redirect
+      setSubmitting(false)
+      setMagnet("")
+
+      // client-side navigation (no reload)
+      router.push(`/video/${encodeURIComponent(videoId)}`)
     } catch (err) {
+      console.error(err)
       setError("Something went wrong. Please try again.")
       setSubmitting(false)
-      console.error(err)
     }
   }
 
@@ -67,6 +65,7 @@ export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
           required
           aria-invalid={!!error}
           aria-describedby={error ? "magnet-error" : undefined}
+          disabled={submitting}
           className="border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
         />
         {error ? (
@@ -74,7 +73,9 @@ export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
             {error}
           </p>
         ) : (
-          <p className="text-xs text-muted-foreground">Paste a valid magnet link to stream content</p>
+          <p className="text-xs text-muted-foreground">
+            Paste a valid magnet link to stream content
+          </p>
         )}
       </div>
 

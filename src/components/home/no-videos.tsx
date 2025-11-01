@@ -44,7 +44,7 @@ export const NoVideos = () => {
               </DialogDescription>
             </DialogHeader>
 
-            <MagnetForm onSubmitSuccess={() => setOpen(false)} />
+            <MagnetForm/>
           </DialogContent>
         </Dialog>
       </CardContent>
