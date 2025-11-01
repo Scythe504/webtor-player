@@ -1,6 +1,5 @@
 import { Header } from "@/components/home/header"
 import { Library } from "@/components/home/library"
-import { MagnetForm } from "@/components/magnet-form/magnet-form"
 
 export default function FetchMagnet() {
 

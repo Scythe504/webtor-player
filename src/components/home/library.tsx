@@ -3,9 +3,6 @@ import { useEffect, useState } from "react"
 import { VideoCard } from "../video/video-cards"
 import { Skeleton } from "../ui/skeleton"
 import { ScrollArea } from "../ui/scroll-area"
-import { Button } from "../ui/button"
-import { Dialog } from "../ui/dialog"
-import { DialogContent } from "@radix-ui/react-dialog"
 import { NoVideos } from "./no-videos"
 
 interface Video {

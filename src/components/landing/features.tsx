@@ -45,16 +45,16 @@ export function FeaturesCarousel() {
     return () => container.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scroll = (direction: "left" | "right") => {
-    const container = scrollContainerRef.current
-    if (!container) return
+  // const scroll = (direction: "left" | "right") => {
+  //   const container = scrollContainerRef.current
+  //   if (!container) return
 
-    const scrollAmount = 450
-    container.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    })
-  }
+  //   const scrollAmount = 450
+  //   container.scrollBy({
+  //     left: direction === "left" ? -scrollAmount : scrollAmount,
+  //     behavior: "smooth",
+  //   })
+  // }
 
   return (
     <section id="features" className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 py-20">

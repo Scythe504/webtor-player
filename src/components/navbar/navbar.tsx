@@ -6,7 +6,6 @@ import { ThemeToggle } from "@/components/theme/theme-toggle"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [authModalOpen, setAuthModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10)

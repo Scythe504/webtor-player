@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardContent, CardFooter, CardTitle } from "../ui/card"
 import { Download, Play } from "lucide-react"
 import { Button } from "../ui/button"
 import { useRouter } from "next/navigation"

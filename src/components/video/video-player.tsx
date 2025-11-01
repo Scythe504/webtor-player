@@ -8,7 +8,6 @@ import {
 import { cn } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "../ui/button"
-import { toast } from "sonner"
 
 interface VideoPlayerProps {
   videoId: string;
@@ -24,7 +23,7 @@ export interface VideoMetadata {
   is_video: boolean;
 }
 
-export default function VideoPlayer({ videoId, videoUrl, metadata }: VideoPlayerProps) {
+export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)

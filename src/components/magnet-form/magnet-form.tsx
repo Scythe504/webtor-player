@@ -3,7 +3,6 @@
 import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "../ui/card"
 
 interface MagnetFormProps {
   onSubmitSuccess?: (videoId: string) => void
@@ -46,9 +45,10 @@ export const MagnetForm = ({ onSubmitSuccess }: MagnetFormProps) => {
       } else {
         window.location.href = `http://localhost:3000/video/${encodeURIComponent(videoId)}`
       }
-    } catch (err: any) {
-      setError(err?.message || "Something went wrong. Please try again.")
+    } catch (err) {
+      setError("Something went wrong. Please try again.")
       setSubmitting(false)
+      console.error(err)
     }
   }
 

@@ -50,7 +50,7 @@ const GradientBlinds: React.FC<GradientBlindsProps> = ({
   noise = 0.3,
   blindCount = 16,
   blindMinWidth = 60,
-  mouseDampening = 0.15,
+  // mouseDampening = 0.15,
   mirrorGradient = false,
   spotlightRadius = 0.5,
   spotlightSoftness = 1,
@@ -213,7 +213,7 @@ void main() {
 `
 
     const { arr: colorArr, count: colorCount } = prepStops(gradientColors)
-    const uniforms: any = {
+    const uniforms = {
       iResolution: { value: [gl.drawingBufferWidth, gl.drawingBufferHeight, 1] },
       iMouse: { value: [0, 0] },
       iTime: { value: 0 },

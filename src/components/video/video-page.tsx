@@ -44,7 +44,7 @@ export const VideoPage = ({ videoId }: {
       }
     }
     fetchMetadata()
-  }, [videoId])
+  }, [backendURL, videoId])
 
 
   const handleDownload = useCallback(() => {
@@ -71,7 +71,7 @@ export const VideoPage = ({ videoId }: {
       })
       console.error(err)
     })
-  }, [])
+  }, [backendURL, videoId])
 
   return <main className="flex min-h-screen sm:flex-row flex-col items-center md:p-8 gap-2">
     <div className="w-full max-w-5xl mx-auto py-10 px-2 space-y-2">
