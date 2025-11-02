@@ -36,7 +36,7 @@ export const VideoPage = ({ videoId }: {
         setMetadata({
           name: "Video",
           path: "-",
-          length: 1000000000,
+          length: 0,
           extension: ".mkv",
           is_video: true,
         })
@@ -48,30 +48,34 @@ export const VideoPage = ({ videoId }: {
 
 
   const handleDownload = useCallback(() => {
-    const body = {
-      video_id: videoId
-    }
-
-    fetch(`${backendURL}/videos/${videoId}/save`, {
-      method: "POST",
-      body: JSON.stringify(body),
-    }).then(res => {
-      if (!res.ok) {
-        throw new Error(`error occured while saving video ${res}`)
-      }
-
-      res.json().then(val => {
-        toast("Download started" as string, {
-          description: val.message
-        })
-      })
-    }).catch((err) => {
-      toast("Download couldnt start", {
-        description: "Some error occured check the logs from \"fluxstream start\" command"
-      })
-      console.error(err)
+    toast("Coming Soon!", {
+      description: "The download feature will come soon, for now just stream torrents as you go!"
     })
-  }, [backendURL, videoId])
+
+    // const body = {
+    //   video_id: videoId
+    // }
+
+    // fetch(`${backendURL}/videos/${videoId}/save`, {
+    //   method: "POST",
+    //   body: JSON.stringify(body),
+    // }).then(res => {
+    //   if (!res.ok) {
+    //     throw new Error(`error occured while saving video ${res}`)
+    //   }
+
+    //   res.json().then(val => {
+    //     toast("Download started" as string, {
+    //       description: val.message
+    //     })
+    //   })
+    // }).catch((err) => {
+    //   toast("Download couldnt start", {
+    //     description: "Some error occured check the logs from \"fluxstream start\" command"
+    //   })
+    //   console.error(err)
+    // })
+  }, [])
 
   return <main className="flex min-h-screen sm:flex-row flex-col items-center md:p-8 gap-2">
     <div className="w-full max-w-5xl mx-auto py-10 px-2 space-y-2">
@@ -81,12 +85,12 @@ export const VideoPage = ({ videoId }: {
             <h1 className="sm:text-xl truncate md:whitespace-normal font-semibold">
               {metadata.name}
             </h1>
-            <Button 
+            <Button
               variant={"outline"}
-              
+
               onClick={handleDownload}
             >
-              <Download />{formatFileSize(metadata.length)}
+              <Download />{metadata.length !== 0 ? formatFileSize(metadata.length) : "-"}
             </Button >
           </div>
           <div className="rounded-xl overflow-hidden shadow-2xl border">

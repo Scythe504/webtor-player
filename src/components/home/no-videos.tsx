@@ -1,32 +1,33 @@
 "use client"
-
-import { useState } from "react"
-import { PlusCircle } from "lucide-react"
-import { Button } from "../ui/button"
+import Animation from '../../../public/dragon-walking.gif'
+// import { useState } from "react"
+// import { PlusCircle } from "lucide-react"
+// import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog"
-import { MagnetForm } from "../magnet-form/magnet-form"
+// import {
+//   Dialog,
+//   DialogTrigger,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogDescription,
+// } from "@/components/ui/dialog"
+// import { MagnetForm } from "../magnet-form/magnet-form"
+import Image from "next/image"
 
 export const NoVideos = () => {
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
 
   return (
-    <Card className="w-[300px] h-[300px] flex flex-col justify-center items-center border-dashed border-2 border-muted-foreground/30 hover:border-muted-foreground/50 transition-all">
-      <CardHeader>
-        <CardTitle className="text-center text-lg font-semibold">
-          No Videos Found
+    <Card className="w-[360px] h-[300px] flex flex-col justify-center items-center border-2 border-muted-foreground/30 hover:border-muted-foreground/50 transition-all">
+      <CardHeader className="w-full">
+        <CardTitle className="text-lg text-center font-semibold ">
+          More Things Coming Soon!
         </CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col items-center justify-center">
-        <Dialog open={open} onOpenChange={setOpen}>
+        {/* <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
               variant="default"
@@ -46,7 +47,13 @@ export const NoVideos = () => {
 
             <MagnetForm/>
           </DialogContent>
-        </Dialog>
+        </Dialog> */}
+        <Image
+          alt='walking-dragon'
+          src={Animation}
+          height={300}
+          width={350}
+        />
       </CardContent>
     </Card>
   )
