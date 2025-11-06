@@ -23,8 +23,8 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <span className="text-xl font-bold group-hover:text-primary transition-colors dark:text-white">
-                FluxStream
+              <span className="text-xl  font-bold group-hover:text-primary transition-colors dark:text-white">
+                Fluxstream
               </span>
             </Link>
 
